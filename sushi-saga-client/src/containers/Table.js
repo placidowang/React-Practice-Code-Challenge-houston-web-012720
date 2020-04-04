@@ -3,6 +3,7 @@ import React, { Fragment } from 'react'
 const Table = (props) => {
 
   const renderPlates = (array) => {
+    // console.log(array)
     return array.map((x, index) => {
       return <div className="empty-plate" style={{ top: -7 * index }}/>
     })
@@ -11,8 +12,11 @@ const Table = (props) => {
   return (
     <Fragment>
       <h1 className="remaining">
-        You have: ${ /* Give me how much money I have left */ } remaining!
+        You have: ${props.cash} remaining!
       </h1>
+
+
+
       <div className="table">
         <div className="stack">
           {
@@ -21,9 +25,17 @@ const Table = (props) => {
                and renders an empty plate
                for every element in the array
             */
-            renderPlates([])
+            renderPlates(props.sushisEaten)
           }
         </div>
+      </div>
+
+      <div className='add-cash-form'>
+        <form  onSubmit={(e)=>{props.addCash(e)}} >
+          <h3>Need more money?? How much do you want??????</h3>
+          $<input type='number' />
+          <input type='submit' value='Add!' />
+        </form>
       </div>
     </Fragment>
   )
